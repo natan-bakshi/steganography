@@ -8,6 +8,8 @@ def encryption_choices():
     encryption_choice = pyip.inputMenu(ENCRYPTION_CHOICES, numbered=True)
     if encryption_choice == 'caesar_cipher':
         caesar_cipher_choices('encryption')
+    if encryption_choice == 'Back to main menu':
+        main()
     if encryption_choice == 'exit':
         return
 

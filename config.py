@@ -6,6 +6,7 @@ FIRST_CHOICES = [
 'Exit']
 
 ENCRYPTION_CHOICES = [
-'caesar_cipher',
+'caesar cipher',
+'Back to main menu',
 'exit'
 ]
