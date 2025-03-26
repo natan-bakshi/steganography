@@ -1,4 +1,4 @@
-from zipfile import compressor_names
+
 import pyinputplus as pyip
 from config import  *
 from caesar_cipher import  *
@@ -7,9 +7,9 @@ from caesar_cipher import  *
 def encryption_choices():
     encryption_choice = pyip.inputMenu(ENCRYPTION_CHOICES, numbered=True)
     if encryption_choice == 'caesar_cipher':
-        pass
+        caesar_cipher_choices('encryption')
     if encryption_choice == 'exit':
-        pass
+        return
 
 
 
@@ -32,7 +32,7 @@ def main():
         pass
 
     if choice == 'Exit':
-        pass
+        return
 
 
 main()
