@@ -34,7 +34,7 @@ def caesar_cipher_choices(mode):
     if mode == 'encryption':
         return caesar_cipher(text, shift)
     if mode == 'deciphering':
-        return caesar_decipher_text(text, shift)
+        return caesar_decipher(text, shift)
 
 
 def caesar_cipher(text, shift):
@@ -43,5 +43,16 @@ def caesar_cipher(text, shift):
     with open(file_path, "w", encoding="utf-8") as file:
         file.write(ciphered_text)
     print(f"Encrypted file saved as {file_path}")
+
+
+def caesar_decipher(text, shift):
+    decrypted_text = caesar_decipher_text(text, shift)
+    file_path = "text.txt"
+    with open(file_path, "w", encoding="utf-8") as file:
+        file.write(decrypted_text)
+
+
+    print(f"Encrypted file saved as {file_path}")
+
 
 caesar_cipher_choices('deciphering')
