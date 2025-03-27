@@ -1,6 +1,7 @@
 from caesar_cipher import  *
 from config import  *
 from transposition_cipher import *
+import pyinputplus as pyip
 
 
 def cipher(model, text, key):
@@ -29,8 +30,8 @@ def decipher(model, text, key):
 
 def get_parameters(model):
     while True:
-        path = input("""To return, press 'back' To exit, press 'exit'
-        Enter the file path: """)
+        path = input("""To return press 'back', To end press 'exit'
+Enter the file path: """)
         if path == "back":
             return True
         if path == "exit":
@@ -70,9 +71,9 @@ def encryption_choices():
 def deciphering_choices():
     encryption_choice = pyip.inputMenu(DECIPHERING_CHOICES, numbered=True)
     if encryption_choice == 'caesar_decipher':
-        get_parameters('caesar_decipher')
+        return get_parameters('caesar_decipher')
     if encryption_choice == 'transposition_decipher':
-        get_parameters('transposition_decipher')
+        return get_parameters('transposition_decipher')
     if encryption_choice == 'exit':
         return False
     return True

@@ -1,5 +1,4 @@
 import math
-import pyinputplus as pyip
 
 def transposition_cipher_text(text:str, key:int) -> str:
     length = len(text)
@@ -28,19 +27,19 @@ def transposition_decipher_text(text:str, key:int) -> str:
 
 
 
-def transposition_method_choices(mode):
-    while True:
-        path = input("Enter the file path: ")
-        try:
-            with open(path, "r", encoding="utf-8") as file:
-                text = file.read()
-                break
-        except:
-            print("The path is incorrect")
-
-    key = pyip.inputInt("Please enter the key number: ")
-
-    if mode == 'encryption':
-        return caesar_cipher(text, key)
-    if mode == 'deciphering':
-        return caesar_decipher(text, key)
+# def transposition_method_choices(mode):
+#     while True:
+#         path = input("Enter the file path: ")
+#         try:
+#             with open(path, "r", encoding="utf-8") as file:
+#                 text = file.read()
+#                 break
+#         except:
+#             print("The path is incorrect")
+#
+#     key = pyip.inputInt("Please enter the key number: ")
+#
+#     if mode == 'encryption':
+#         return caesar_cipher(text, key)
+#     if mode == 'deciphering':
+#         return caesar_decipher(text, key)
