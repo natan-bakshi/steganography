@@ -10,3 +10,9 @@ ENCRYPTION_CHOICES = [
 'Back to main menu',
 'exit'
 ]
+
+DECIPHERING_CHOICES = [
+'caesar_decipher',
+'Back to main menu',
+'exit'
+]
