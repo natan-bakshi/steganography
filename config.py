@@ -1,3 +1,5 @@
+
+# main
 FIRST_CHOICES = [
 'Encrypt a text file',
 'Decrypt a text file',
@@ -5,6 +7,8 @@ FIRST_CHOICES = [
 'Extract a message from an image',
 'Exit']
 
+
+# caesar
 ENCRYPTION_CHOICES = [
 'caesar cipher',
 'Back to main menu',
@@ -16,3 +20,5 @@ DECIPHERING_CHOICES = [
 'Back to main menu',
 'exit'
 ]
+
+# transposition
