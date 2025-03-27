@@ -8,15 +8,17 @@ FIRST_CHOICES = [
 'Exit']
 
 
-# caesar
+
 ENCRYPTION_CHOICES = [
-'caesar cipher',
+'caesar_cipher',
+'transposition_cipher',
 'Back to main menu',
 'exit'
 ]
 
 DECIPHERING_CHOICES = [
 'caesar_decipher',
+'transposition_decipher',
 'Back to main menu',
 'exit'
 ]
