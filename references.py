@@ -2,27 +2,29 @@ from caesar_cipher import  *
 from config import  *
 from transposition_cipher import *
 import pyinputplus as pyip
+import os
 
 
-def cipher(model, text, key):
+
+def cipher(model, filename, text, key):
     ciphered_text = ""
     if model == "caesar":
         ciphered_text = caesar_cipher_text(text, key)
     if model == "transposition":
         ciphered_text = transposition_cipher_text(text, key)
-    file_path = "secret.enc"
+    file_path = f"{filename}.enc"
     with open(file_path, "w", encoding="utf-8") as file:
         file.write(ciphered_text)
     print(f"Encrypted file saved as {file_path}")
 
 
-def decipher(model, text, key):
+def decipher(model, filename, text, key):
     decrypted_text = ""
     if model == "caesar":
         decrypted_text = caesar_decipher_text(text, key)
     if model == "transposition":
         decrypted_text = transposition_decipher_text(text, key)
-    file_path = "text.txt"
+    file_path = f"{filename}.txt"
     with open(file_path, "w", encoding="utf-8") as file:
         file.write(decrypted_text)
     print(f"Encrypted file saved as {file_path}")
@@ -43,16 +45,17 @@ Enter the file path: """)
         except:
             print("The path is incorrect")
 
+    filename = os.path.splitext(os.path.basename(path))[0]
     key = pyip.inputInt("Please enter the key number: ")
 
     if model == 'caesar_cipher':
-        cipher('caesar', text, key)
+        cipher('caesar', filename, text, key)
     if model == 'caesar_decipher':
-        decipher('caesar', text, key)
+        decipher('caesar', filename, text, key)
     if model == 'transposition_cipher':
-        cipher('transposition', text, key)
+        cipher('transposition', filename, text, key)
     if model == 'transposition_decipher':
-        decipher('transposition', text, key)
+        decipher('transposition', filename, text, key)
 
     return True
 
