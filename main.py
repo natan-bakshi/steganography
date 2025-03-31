@@ -1,7 +1,6 @@
-from config import  *
 import pyinputplus as pyip
 from references import encryption_choices, deciphering_choices
-
+from rsa_generate import *
 
 def main():
     starter = True
@@ -20,6 +19,10 @@ def main():
 
         if choice == 'Extract a message from an image':
             pass
+
+        if choice == 'Create RSA keys':
+            generate_rsa_keys()
+
 
         if choice == 'Exit':
             starter = False

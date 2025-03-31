@@ -5,6 +5,7 @@ FIRST_CHOICES = [
 'Decrypt a text file',
 'Hide a message in an image',
 'Extract a message from an image',
+'Create RSA keys',
 'Exit']
 
 

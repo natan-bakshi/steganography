@@ -17,7 +17,7 @@ def cipher(model, filename, text):
     file_path = f"{model}_encrypted_{filename}.enc"
     with open(file_path, "w", encoding="utf-8") as file:
         file.write(ciphered_text)
-    print(f"Encrypted file saved as {file_path}")
+    print(f"Encrypted file saved as {file_path}\n")
 
 
 def decipher(model, filename, text):
@@ -31,8 +31,7 @@ def decipher(model, filename, text):
     file_path = f"{model}_deciphered_{filename}.txt"
     with open(file_path, "w", encoding="utf-8") as file:
         file.write(decrypted_text)
-    print(f"Encrypted file saved as {model}_deciphered_{file_path}")
-    print(model)
+    print(f"Encrypted file saved as {model}_deciphered_{file_path}\n")
 
 
 def get_parameters(model):

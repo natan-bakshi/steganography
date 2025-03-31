@@ -10,6 +10,6 @@ def generate_rsa_keys():
     e = random.choice(small_prime_list)
     d = mod_inverse(e, t_n)
     print("Public key: ", (e, n))
-    print("Private key: ", (d, n))
+    print("Private key: ", (d, n),"\n")
 
-generate_rsa_keys()
+# generate_rsa_keys()
