@@ -1,6 +1,7 @@
 import math
+import pyinputplus as pyip
 
-def transposition_cipher_text(text:str, key:int) -> str:
+def transposition_text(text:str, key:int) -> str:
     length = len(text)
     columns = math.ceil(length / key)
     pad = ' '
@@ -9,7 +10,7 @@ def transposition_cipher_text(text:str, key:int) -> str:
     matrix = []
     for column in range(key):
         matrix.append(list(text[column * columns:(column + 1) * columns]))
-    print(matrix)
+    # print(matrix)
 
     new_text = ""
     for char in range(columns):
@@ -19,11 +20,14 @@ def transposition_cipher_text(text:str, key:int) -> str:
     return new_text
 
 
-def transposition_decipher_text(text:str, key:int) -> str:
+def transposition_cipher_text(text:str) -> str:
+    key = pyip.inputInt("Please enter the key: ")
+    return transposition_text(text, key)
+
+def transposition_decipher_text(text:str) -> str:
+    key = pyip.inputInt("Please enter the key: ")
     columns = math.ceil(len(text) / key)
-    return transposition_cipher_text(text, columns)
-
-
+    return transposition_text(text, columns)
 
 
 
