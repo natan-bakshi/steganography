@@ -24,7 +24,6 @@ def main():
         if choice == 'Create RSA keys':
             generate_rsa_keys()
 
-
         if choice == 'Exit':
             starter = False
 

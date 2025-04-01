@@ -1,4 +1,4 @@
-from PIL import Image
+from PIL import Image, ImageOps
 import numpy as np
 import os
 
@@ -14,7 +14,12 @@ def bits_to_text(bits):
 def encode_image(image_path, text):
     print("Working on your request...\n")
     # Ensure the image is converted to PNG format internally
-    image = Image.open(image_path).convert("RGB")
+    # image = Image.open(image_path).convert("RGB")
+
+
+    image = Image.open(image_path)
+    image = ImageOps.exif_transpose(image).convert("RGB")
+
 
     # Convert JPG to PNG before processing (to avoid compression issues)
     if image_path.lower().endswith(".jpg") or image_path.lower().endswith(".jpeg"):
@@ -24,10 +29,6 @@ def encode_image(image_path, text):
 
     # Process as usual
     pixels = np.array(image)
-
-    # Read the secret message
-    # with open(text_path, 'r') as file:
-    #     text = file.read()
 
     message_bits = text_to_bits(text)
     message_length = len(message_bits)
@@ -49,6 +50,8 @@ def encode_image(image_path, text):
                     pixel_bin = pixel_bin[:-1] + full_bits[bit_index]
                     pixels[i, j, k] = int(pixel_bin, 2)
                     bit_index += 1
+                else:
+                    break
 
     output_path = os.path.splitext(image_path)[0]
     output_path += "_encoded.png"
@@ -60,6 +63,7 @@ def encode_image(image_path, text):
 def decode_image(image_path):
     print("Working on your request...\n")
     image = Image.open(image_path)
+    image = ImageOps.exif_transpose(image).convert("RGB")
     image = image.convert("RGB")
     pixels = np.array(image)
 
@@ -87,7 +91,7 @@ def lsb(mode):
     while True:
         image_path = input("""Enter the image path: 
 To return press 'back', To end press 'exit'
-    """).strip("\"'")
+""").strip("\"'")
         if image_path == "back":
             return True
         if image_path == "exit":
@@ -117,6 +121,10 @@ To return press 'back', To end press 'exit'""").strip("\"'")
         decode_image(image_path)
 
     return True
+
+
+# lsb('hide')
+# lsb('expose')
 
 
 img_path = "/home/mefathim-77/Pictures/austrian castle.jpeg"
