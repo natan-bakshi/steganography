@@ -36,7 +36,7 @@ def decipher(model, filename, text):
 
 def get_parameters(model):
     while True:
-        path = input("""Enter the file path: 
+        path = input("""Enter the text file path: 
 To return press 'back', To end press 'exit'
 """)
         if path == "back":

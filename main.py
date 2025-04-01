@@ -1,6 +1,7 @@
 import pyinputplus as pyip
 from references import encryption_choices, deciphering_choices
 from rsa_generate import *
+from lsb_steganography import *
 
 def main():
     starter = True
@@ -15,10 +16,10 @@ def main():
             starter = deciphering_choices()
 
         if choice == 'Hide a message in an image':
-            pass
+            starter = lsb('hide')
 
         if choice == 'Extract a message from an image':
-            pass
+            starter = lsb('expose')
 
         if choice == 'Create RSA keys':
             generate_rsa_keys()
