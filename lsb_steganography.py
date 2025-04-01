@@ -12,6 +12,7 @@ def bits_to_text(bits):
 
 
 def encode_image(image_path, text):
+    print("Working on your request...\n")
     # Ensure the image is converted to PNG format internally
     image = Image.open(image_path).convert("RGB")
 
@@ -57,6 +58,7 @@ def encode_image(image_path, text):
 
 
 def decode_image(image_path):
+    print("Working on your request...\n")
     image = Image.open(image_path)
     image = image.convert("RGB")
     pixels = np.array(image)
@@ -102,10 +104,8 @@ To return press 'back', To end press 'exit'
             except:
                 print("The path is incorrect")
         encode_image(image_path, text)
-        print("Working on your request...\n")
     if mode == 'expose':
         decode_image(image_path)
-        print("Working on your request...\n")
 
     return True
 
