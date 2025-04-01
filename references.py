@@ -38,7 +38,7 @@ def get_parameters(model):
     while True:
         path = input("""Enter the text file path: 
 To return press 'back', To end press 'exit'
-""")
+""").strip("\"'")
         if path == "back":
             return True
         if path == "exit":

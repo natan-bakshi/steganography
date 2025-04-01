@@ -81,23 +81,32 @@ def decode_image(image_path):
         file.write(secret_message)
 
     print("Message successfully extracted to", output_text_path, "\n")
-from pathlib import Path
-
 
 
 def lsb(mode):
-    image_path = input("""Enter the image path: 
+    while True:
+        image_path = input("""Enter the image path: 
 To return press 'back', To end press 'exit'
-""")
-    if image_path == "back":
-        return True
-    if image_path == "exit":
-        return False
+    """).strip("\"'")
+        if image_path == "back":
+            return True
+        if image_path == "exit":
+            return False
+        try:
+            image = Image.open(image_path).convert("RGB")
+            break
+        except:
+            print("The path is incorrect")
 
     if mode == 'hide':
         while True:
+            path = input("""Enter the text path:
+To return press 'back', To end press 'exit'""").strip("\"'")
+            if image_path == "back":
+                return True
+            if image_path == "exit":
+                return False
             try:
-                path = input("Enter the text path: ")
                 with open(path, "r") as file:
                     text = file.read()
                     break
