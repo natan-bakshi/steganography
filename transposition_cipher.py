@@ -1,49 +1,92 @@
 import math
 import pyinputplus as pyip
+import re
 
-def transposition_text(text:str, key:int) -> str:
-    length = len(text)
-    columns = math.ceil(length / key)
+from sympy.codegen.ast import pointer_const
+
+
+def transposition(text:str, key:list) -> str:
+    # print(key)
+    len_text = len(text)
+    columns = len(key)
+    lines = math.ceil(len_text / columns)
     pad = ' '
-    padding_length = key - length % key if length % key != 0 else 0
+    padding_length = columns - len_text % columns if len_text % columns != 0 else 0
     text = text + (pad * padding_length)
-    matrix = []
-    for column in range(key):
-        matrix.append(list(text[column * columns:(column + 1) * columns]))
+    matrix = [[None] * columns for _ in range(lines)]
+    pointer = 0
+    for line in range(lines):
+        for column in key:
+            # print(column)
+            matrix[line][column] = (text[pointer])
+            pointer += 1
+                # matrix.append(list(text[column * lines:(column + 1) * lines]))
     # print(matrix)
 
     new_text = ""
     for char in range(columns):
-        for column in range(key):
-           new_text += matrix[column][char]
+        for line in range(lines):
+           new_text += matrix[line][char]
 
     return new_text
 
 
+def transposition_decode(text:str, key:list) -> str:
+    # print(key)
+    len_text = len(text)
+    columns = len(key)
+    lines = math.ceil(len_text / columns)
+    pad = ' '
+    padding_length = columns - len_text % columns if len_text % columns != 0 else 0
+    text = text + (pad * padding_length)
+    matrix = [[None] * columns for _ in range(lines)]
+    pointer = 0
+    for column in range(columns):
+        for line in range(lines):
+            matrix[line][column] = (text[pointer])
+            pointer += 1
+            # matrix.append(list(text[column * lines:(column + 1) * lines]))
+    # print(matrix)
+
+    new_text = ""
+    for line in range(lines):
+        for char in key:
+           new_text += matrix[line][char]
+
+    return new_text
+
+
+
+# def transposition_cipher_text(text:str) -> str:
+#     key = pyip.inputInt("Please enter the key: ")
+#     return transposition_text(text, key)
+#
+# def transposition_decipher_text(text:str) -> str:
+#     key = pyip.inputInt("Please enter the key: ")
+#     columns = math.ceil(len(text) / key)
+#     return transposition_text(text, columns)
+
+
 def transposition_cipher_text(text:str) -> str:
-    key = pyip.inputInt("Please enter the key: ")
-    return transposition_text(text, key)
+    key = input("Please enter the key: ")
+    validation = bool(re.fullmatch(r'[A-Za-z0-9]+', key) and len(key) > 2)
+    while not validation:
+        print("A key can only contain English letters and numbers and a minimum of two characters\n")
+        key = input("Please enter the key: ")
+
+    sorted_key = sorted(range(len(key)), key=lambda i: key[i])
+    return transposition(text, sorted_key)
+
+
 
 def transposition_decipher_text(text:str) -> str:
-    key = pyip.inputInt("Please enter the key: ")
-    columns = math.ceil(len(text) / key)
-    return transposition_text(text, columns)
+    key = input("Please enter the key: ")
+    validation = bool(re.fullmatch(r'[A-Za-z0-9]+', key) and len(key) > 2)
+    while not validation:
+        print("A key can only contain English letters and numbers and a minimum of two characters\n")
+        key = input("Please enter the key: ")
 
+    sorted_key = sorted(range(len(key)), key=lambda i: key[i])
 
+    return transposition_decode(text, sorted_key)
 
-# def transposition_method_choices(mode):
-#     while True:
-#         path = input("Enter the file path: ")
-#         try:
-#             with open(path, "r", encoding="utf-8") as file:
-#                 text = file.read()
-#                 break
-#         except:
-#             print("The path is incorrect")
-#
-#     key = pyip.inputInt("Please enter the key number: ")
-#
-#     if mode == 'encryption':
-#         return caesar_cipher(text, key)
-#     if mode == 'deciphering':
-#         return caesar_decipher(text, key)

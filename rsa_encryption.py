@@ -1,4 +1,6 @@
 import pyinputplus as pyip
+from rsa_generate import *
+
 
 def get_ord(character):
     char_ord = str(ord(character))
@@ -17,7 +19,16 @@ BLOCK_SIZE = 2
 
 
 def rsa_encrypt(text):
-    key = pyip.inputCustom(validate_tuple, prompt="Enter public key (comma-separated): ")
+    print("Do you need to generate a public and private key?")
+    generate = pyip.inputMenu(['yes', 'no'], numbered=True)
+    if generate == "yes":
+        keys = generate_rsa_keys()
+        for key, value in keys.items():
+            print(f"{key}: {value}")
+            key = keys["Public key"]
+    else:
+        key = pyip.inputCustom(validate_tuple, prompt="Enter public key (comma-separated): ")
+
     length = len(text)
     pad = ' '
     padding_length = BLOCK_SIZE - length % BLOCK_SIZE if length % BLOCK_SIZE != 0 else 0

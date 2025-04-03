@@ -6,7 +6,7 @@ from lsb_steganography import *
 def main():
     starter = True
     while starter:
-        print('What would you like to do?')
+        print('\nWhat would you like to do?')
         choice = pyip.inputMenu(FIRST_CHOICES, numbered=True)
 
         if choice == 'Encrypt a text file':
@@ -22,10 +22,10 @@ def main():
             starter = lsb('expose')
 
         if choice == 'Create RSA keys':
-            generate_rsa_keys()
-
+            keys = generate_rsa_keys()
+            for key, value in keys.items():
+                print(f"{key}: {value}")
         if choice == 'Exit':
             starter = False
-
 
 main()

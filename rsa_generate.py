@@ -9,7 +9,7 @@ def generate_rsa_keys():
     t_n = (p1 - 1) * (p2 -1)
     e = random.choice(small_prime_list)
     d = mod_inverse(e, t_n)
-    print("Public key: ", (e, n))
-    print("Private key: ", (d, n),"\n")
-
+    # print("Public key: ", (e, n))
+    # print("Private key: ", (d, n),"\n")
+    return {"Public key":(e, n), "Private key":(d, n)}
 # generate_rsa_keys()
