@@ -68,11 +68,11 @@ def transposition_decode(text:str, key:list) -> str:
 
 
 def transposition_cipher_text(text:str) -> str:
-    key = input("Please enter the key: ")
-    validation = bool(re.fullmatch(r'[A-Za-z0-9]+', key) and len(key) > 2)
+    validation = False
     while not validation:
-        print("A key can only contain English letters and numbers and a minimum of two characters\n")
+        print("A key can only contain English letters and numbers and a minimum of two characters")
         key = input("Please enter the key: ")
+        validation = bool(re.fullmatch(r'[A-Za-z0-9]+', key) and len(key) > 2)
 
     sorted_key = sorted(range(len(key)), key=lambda i: key[i])
     return transposition(text, sorted_key)
@@ -80,11 +80,11 @@ def transposition_cipher_text(text:str) -> str:
 
 
 def transposition_decipher_text(text:str) -> str:
-    key = input("Please enter the key: ")
-    validation = bool(re.fullmatch(r'[A-Za-z0-9]+', key) and len(key) > 2)
+    validation = False
     while not validation:
         print("A key can only contain English letters and numbers and a minimum of two characters\n")
         key = input("Please enter the key: ")
+        validation = bool(re.fullmatch(r'[A-Za-z0-9]+', key) and len(key) > 2)
 
     sorted_key = sorted(range(len(key)), key=lambda i: key[i])
 
